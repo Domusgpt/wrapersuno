@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Jingles</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generated Jingles</h1>
+        {% for clip in clips %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ clip.title }}</h5>
+                    <audio controls>
+                        <source src="{{ clip.audio_url }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p class="card-text">{{ clip.metadata.prompt }}</p>
+                    <a href="{{ clip.audio_url }}" class="btn btn-primary" download>Download</a>
+                </div>
+            </div>
+        {% endfor %}
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">Generate More Jingles</a>
+    </div>
+</body>
+</html>
